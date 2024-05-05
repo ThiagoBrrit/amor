@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido de Namoro</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden; /* Impede que os botões saiam da tela */
+    background-color: #add8e6; /* Cor de fundo azul claro */
+  }
+  #mensagem {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  #botoes {
+    display: flex;
+    justify-content: center;
+    position: relative; /* Posição relativa para conter o botão Não */
+  }
+  #botao-sim, #botao-nao {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+  #botao-sim {
+    background-color: #4CAF50;
+    color: white;
+  }
+  #botao-nao {
+    background-color: #f44336;
+    color: white;
+    position: absolute;
+    transition: transform 0.5s ease;
+  }
+  #botao-nao.separado {
+    margin-top: 30px; /* Adiciona um espaço entre os botões */
+  }
+</style>
+</head>
+<body>
+<div id="mensagem">Eu te amo. Você quer namorar comigo?</div>
+<div id="botoes">
+  <button id="botao-sim">Sim</button>
+  <button id="botao-nao">Não</button>
+</div>
+
+<script>
+  function moveBotaoNao() {
+    var botaoNao = document.getElementById('botao-nao');
+    var maxX = window.innerWidth - botaoNao.offsetWidth;
+    var maxY = window.innerHeight - botaoNao.offsetHeight;
+    var newX = Math.random() * maxX;
+    var newY = Math.random() * maxY;
+    // Limita o botão dentro de uma área específica na tela
+    newX = Math.max(0, Math.min(maxX * 0.8, newX)); // 80% da largura da tela
+    newY = Math.max(0, Math.min(maxY * 0.8, newY)); // 80% da altura da tela
+    botaoNao.style.transform = `translate(${newX}px, ${newY}px)`;
+  }
+
+  document.getElementById('botao-sim').addEventListener('click', function() {
+    alert('Yay! Isso é maravilhoso! Eu também te amo! 😊');
+    // Você pode adicionar mais ações aqui, como redirecionar para outra página ou exibir uma mensagem especial.
+  });
+
+  document.getElementById('botao-nao').addEventListener('click', function() {
+    for (var i = 0; i < 10; i++) { // Move 10 vezes aleatoriamente
+      setTimeout(moveBotaoNao, i * 500); // Move a cada meio segundo
+    }
+    this.classList.add('separado'); // Adiciona a classe 'separado' ao botão "Não"
+  });
+</script>
+</body>
+</html>
